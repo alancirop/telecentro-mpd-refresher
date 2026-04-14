@@ -24,4 +24,4 @@ jobs:
           TC_EMAIL:        ${{ secrets.TC_EMAIL }}
           TC_PASSWORD:     ${{ secrets.TC_PASSWORD }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-        run: node mpd-refresher/index.js
+        run:  node index.js
