@@ -1,27 +1,20 @@
 name: Telecentro MPD Refresher
-
 on:
   schedule:
-    - cron: '0 * * * *'   # cada hora en punto
-  workflow_dispatch:        # también permite correrlo manual desde GitHub
-
+    - cron: '0 * * * *'
+  workflow_dispatch:
 jobs:
   refresh:
     runs-on: ubuntu-latest
     timeout-minutes: 15
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Run MPD Refresher
         env:
-          TC_EMAIL:        ${{ secrets.TC_EMAIL }}
-          TC_PASSWORD:     ${{ secrets.TC_PASSWORD }}
+          TC_EMAIL:         ${{ secrets.TC_EMAIL }}
+          TC_PASSWORD:      ${{ secrets.TC_PASSWORD }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-        run:  node index.js
+        run: node index.js
